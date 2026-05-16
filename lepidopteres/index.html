@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ordre: Lépidoptères - Espèces Nuisibles</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/FBXLoader.js"></script>
+    <script src="obj-loader.js"></script>
+    <script src="species-data.js"></script>
+    <script src="tooltip.js"></script>
+    <script src="script.js"></script>
+</head>
+<body>
+    <header class="hero-section">
+        <div class="hero-content">
+            <h1 class="hero-title">Ordre: Lépidoptères</h1>
+            <p class="hero-subtitle">Principales espèces nuisibles aux cultures</p>
+            <div class="hero-3d-container">
+                <div id="model-viewer"></div>
+                <div class="model-controls">
+                    <p>Modèle 3D interactif - Cliquez et faites glisser pour explorer</p>
+                    <p class="species-name">Helicoverpa armigera</p>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <div class="scroll-arrow"></div>
+        </div>
+    </header>
+
+    <nav class="navigation">
+        <div class="nav-container">
+            <ul class="nav-menu">
+                <li><a href="#species" class="nav-link">Espèces Nuisibles</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+
+
+        <section id="species" class="species-section">
+            <div class="container">
+                <h2 class="section-title">Principales espèces des Lépidoptères nuisibles aux cultures</h2>
+                
+                <!-- Famille Cossidae -->
+                <div class="family-group">
+                    <h3 class="family-title">Famille: Cossidae</h3>
+                    <div class="species-grid">
+                        <div class="species-card" data-species="cossus-cossus">
+                            <div class="species-image">
+                                <img src="images/cossus_cossus.jpg" alt="Cossus cossus">
+                            </div>
+                            <div class="species-info">
+                                <h4>Cossus cossus</h4>
+                                <p class="species-common-name">Cossus gâte-bois</p>
+                                <p class="species-family">Cossidae</p>
+                            </div>
+                        </div>
+                        
+                        <div class="species-card" data-species="zeuzera-pyrina">
+                            <div class="species-image">
+                                <img src="images/zeuzera_pyrina.jpg" alt="Zeuzera pyrina">
+                            </div>
+                            <div class="species-info">
+                                <h4>Zeuzera pyrina</h4>
+                                <p class="species-common-name">Zeuzère du poirier</p>
+                                <p class="species-family">Cossidae</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Famille Praydidae -->
+                <div class="family-group">
+                    <h3 class="family-title">Famille: Praydidae</h3>
+                    <div class="species-grid">
+                        <div class="species-card" data-species="prays-oleae">
+                            <div class="species-image">
+                                <img src="images/prays_oleae.jpg" alt="Prays oleae">
+                            </div>
+                            <div class="species-info">
+                                <h4>Prays oleae</h4>
+                                <p class="species-common-name">Teigne de l'olivier</p>
+                                <p class="species-family">Praydidae</p>
+                            </div>
+                        </div>
+                        
+                        <div class="species-card" data-species="prays-citri">
+                            <div class="species-image">
+                                <img src="images/prays_citri.jpg" alt="Prays citri">
+                            </div>
+                            <div class="species-info">
+                                <h4>Prays citri</h4>
+                                <p class="species-common-name">Teigne du citronnier</p>
+                                <p class="species-family">Praydidae</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Famille Yponomeutidae -->
+                <div class="family-group">
+                    <h3 class="family-title">Famille: Yponomeutidae</h3>
+                    <div class="species-grid">
+                        <div class="species-card" data-species="yponomeuta-malinella">
+                            <div class="species-image">
+                                <img src="images/yponomeuta_malinella.jpg" alt="Yponomeuta malinella">
+                            </div>
+                            <div class="species-info">
+                                <h4>Yponomeuta malinella</h4>
+                                <p class="species-common-name">Hyponomeute du pommier</p>
+                                <p class="species-family">Yponomeutidae</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Famille Gelechiidae -->
+                <div class="family-group">
+                    <h3 class="family-title">Famille: Gelechiidae</h3>
+                    <div class="species-grid">
+                        <div class="species-card" data-species="phthorimaea-operculella">
+                            <div class="species-image">
+                                <img src="images/phthorimaea_operculella.jpg" alt="Phthorimaea operculella">
+                            </div>
+                            <div class="species-info">
+                                <h4>Phthorimaea operculella</h4>
+                                <p class="species-common-name">Teigne de la pomme de terre</p>
+                                <p class="species-family">Gelechiidae</p>
+                            </div>
+                        </div>
+                        
+                        <div class="species-card" data-species="scrobipalpa-ocellatella">
+                            <div class="species-image">
+                                <img src="images/scrobipalpa_ocellatella.jpg" alt="Scrobipalpa ocellatella">
+                            </div>
+                            <div class="species-info">
+                                <h4>Scrobipalpa ocellatella</h4>
+                                <p class="species-common-name">Teigne de la betterave</p>
+                                <p class="species-family">Gelechiidae</p>
+                            </div>
+                        </div>
+                        
+                        <div class="species-card" data-species="pectinophora-gossypiella">
+                            <div class="species-image">
+                                <img src="images/pectinophora_gossypiella.jpg" alt="Pectinophora gossypiella">
+                            </div>
+                            <div class="species-info">
+                                <h4>Pectinophora gossypiella</h4>
+                                <p class="species-common-name">Ver rose du cotonnier</p>
+                                <p class="species-family">Gelechiidae</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="species-grid">
+                        <div class="species-card" data-species="anarsia-lineatella">
+                            <div class="species-image">
+                                <img src="images/anarsia_lineatella.jpg" alt="Anarsia lineatella">
+                            </div>
+                            <div class="species-info">
+                                <h4>Anarsia lineatella</h4>
+                                <p class="species-common-name">Petite mineuse du pêcher</p>
+                                <p class="species-family">Gelechiidae</p>
+                            </div>
+                        </div>
+                        
+                        <div class="species-card" data-species="tuta-absoluta">
+                            <div class="species-image">
+                                <img src="images/tuta_absoluta.jpg" alt="Tuta absoluta">
+                            </div>
+                            <div class="species-info">
+                                <h4>Tuta absoluta</h4>
+                                <p class="species-common-name">Mineuse de la tomate</p>
+                                <p class="species-family">Gelechiidae</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Famille Tortricidae -->
+                <div class="family-group">
+                    <h3 class="family-title">Famille: Tortricidae</h3>
+                    <div class="species-grid">
+                        <div class="species-card" data-species="cydia-pomonella">
+                            <div class="species-image">
+                                <img src="images/cydia_pomonella.jpg" alt="Cydia pomonella">
+                            </div>
+                            <div class="species-info">
+                                <h4>Cydia pomonella</h4>
+                                <p class="species-common-name">Carpocapse des pommes</p>
+                                <p class="species-family">Tortricidae</p>
+                            </div>
+                        </div>
+                        
+                        <div class="species-card" data-species="grapholita-molesta">
+                            <div class="species-image">
+                                <img src="images/grapholita_molesta.jpg" alt="Grapholita molesta">
+                            </div>
+                            <div class="species-info">
+                                <h4>Grapholita molesta</h4>
+                                <p class="species-common-name">Tordeuse orientale du pêcher</p>
+                                <p class="species-family">Tortricidae</p>
+                            </div>
+                        </div>
+                        
+                        <div class="species-card" data-species="cydia-nigricana">
+                            <div class="species-image">
+                                <img src="images/cydia_nigricana.jpg" alt="Cydia nigricana">
+                            </div>
+                            <div class="species-info">
+                                <h4>Cydia nigricana</h4>
+                                <p class="species-common-name">Tordeuse du pois</p>
+                                <p class="species-family">Tortricidae</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="species-grid">
+                        <div class="species-card" data-species="lobesia-botrana">
+                            <div class="species-image">
+                                <img src="images/lobesia_botrana.jpg" alt="Lobesia botrana">
+                            </div>
+                            <div class="species-info">
+                                <h4>Lobesia botrana</h4>
+                                <p class="species-common-name">Eudémis de la vigne</p>
+                                <p class="species-family">Tortricidae</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Famille Pyralidae -->
+                <div class="family-group">
+                    <h3 class="family-title">Famille: Pyralidae</h3>
+                    <div class="species-grid">
+                        <div class="species-card" data-species="ectomyelois-ceratoniae">
+                            <div class="species-image">
+                                <img src="images/ectomyelois_ceratoniae.jpg" alt="Ectomyelois ceratoniae">
+                            </div>
+                            <div class="species-info">
+                                <h4>Ectomyelois ceratoniae</h4>
+                                <p class="species-common-name">Pyrale des dattes</p>
+                                <p class="species-family">Pyralidae</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Famille Noctuidae -->
+                <div class="family-group">
+                    <h3 class="family-title">Famille: Noctuidae</h3>
+                    <div class="species-grid">
+                        <div class="species-card" data-species="agrotis-segetum">
+                            <div class="species-image">
+                                <img src="images/agrotis_segetum.jpg" alt="Agrotis segetum">
+                            </div>
+                            <div class="species-info">
+                                <h4>Agrotis segetum</h4>
+                                <p class="species-common-name">Noctuelle des moissons</p>
+                                <p class="species-family">Noctuidae</p>
+                            </div>
+                        </div>
+                        
+                        <div class="species-card" data-species="agrotis-ipsilon">
+                            <div class="species-image">
+                                <img src="images/agrotis_ipsilon.jpg" alt="Agrotis ipsilon">
+                            </div>
+                            <div class="species-info">
+                                <h4>Agrotis ipsilon</h4>
+                                <p class="species-common-name">Noctuelle baignée</p>
+                                <p class="species-family">Noctuidae</p>
+                            </div>
+                        </div>
+                        
+                        <div class="species-card" data-species="spodoptera-exigua">
+                            <div class="species-image">
+                                <img src="images/spodoptera_exigua.jpg" alt="Spodoptera exigua">
+                            </div>
+                            <div class="species-info">
+                                <h4>Spodoptera exigua</h4>
+                                <p class="species-common-name">Légionnaire de la betterave</p>
+                                <p class="species-family">Noctuidae</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="species-grid">
+                        <div class="species-card" data-species="spodoptera-littoralis">
+                            <div class="species-image">
+                                <img src="images/spodoptera_littoralis.jpg" alt="Spodoptera littoralis">
+                            </div>
+                            <div class="species-info">
+                                <h4>Spodoptera littoralis</h4>
+                                <p class="species-common-name">Ver du cotonnier</p>
+                                <p class="species-family">Noctuidae</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Modal pour les détails des espèces -->
+    <div id="species-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="modal-body"></div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/FBXLoader.js"></script>
+    <script src="obj-loader.js"></script>
+    <script src="species-data.js"></script>
+    <script src="tooltip.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

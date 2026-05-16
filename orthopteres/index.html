@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orthoptères - Classification et Identification</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #2d5016 0%, #4a7c59 50%, #6b8e23 100%);
+            color: #333;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        .header {
+            text-align: center;
+            padding: 40px 20px;
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            color: #2d5016;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            font-weight: 700;
+        }
+
+        .header .subtitle {
+            font-size: 1.4rem;
+            color: #4a7c59;
+            font-weight: 300;
+            margin-bottom: 10px;
+        }
+
+        .header .description {
+            font-size: 1.1rem;
+            color: #666;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .model-section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+            margin: 30px auto;
+            max-width: 1600px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        #threejs-container {
+            width: 100%;
+            height: 600px; /* Hauteur fixe pour le modèle */
+            position: relative;
+            cursor: grab;
+            background: transparent;
+        }
+
+        #threejs-container:active {
+            cursor: grabbing;
+        }
+
+        .controls-info {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: rgba(45, 80, 22, 0.9);
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            z-index: 100;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 1.3rem;
+            color: #4a7c59;
+            z-index: 10;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .content-sections {
+            display: flex;
+            gap: 30px;
+            padding: 30px;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .navigation-panel {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+            padding: 30px;
+            overflow-y: auto;
+        }
+
+        .navigation-panel h2 {
+            color: #2d5016;
+            margin-bottom: 25px;
+            font-size: 2rem;
+            border-bottom: 3px solid #4a7c59;
+            padding-bottom: 15px;
+            text-align: center;
+        }
+
+        .suborder-card {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+            border-left: 5px solid #4a7c59;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .suborder-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(74, 124, 89, 0.1) 0%, rgba(45, 80, 22, 0.1) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .suborder-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+            border-left-color: #2d5016;
+        }
+
+        .suborder-card:hover::before {
+            opacity: 1;
+        }
+
+        .suborder-card h3 {
+            color: #2d5016;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            font-weight: 600;
+            position: relative;
+            z-index: 1;
+        }
+
+        .suborder-card .scientific-name {
+            font-style: italic;
+            color: #4a7c59;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .suborder-card .description {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .suborder-card .characteristics {
+            background: rgba(74, 124, 89, 0.1);
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 15px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .suborder-card .characteristics h4 {
+            color: #2d5016;
+            margin-bottom: 10px;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .characteristics-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .characteristics-list li {
+            padding: 5px 0;
+            color: #555;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .characteristics-list li::before {
+            content: "🔸";
+            position: absolute;
+            left: 0;
+            top: 5px;
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, #4a7c59 0%, #2d5016 100%);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 15px;
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 4px 15px rgba(74, 124, 89, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(74, 124, 89, 0.4);
+        }
+
+        .info-section {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            padding: 25px;
+            margin-top: 0;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .info-section h3 {
+            color: #2d5016;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .info-section p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .content-sections {
+                flex-direction: column;
+                padding: 15px;
+                gap: 20px;
+            }
+
+            .header h1 {
+                font-size: 2.2rem;
+            }
+
+            .header .subtitle {
+                font-size: 1.2rem;
+            }
+
+            #threejs-container {
+                height: 400px;
+            }
+        }
+
+        .species-count {
+            display: inline-block;
+            background: #4a7c59;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Orthoptères</h1>
+        <p class="subtitle">Classification et Identification</p>
+        <p class="description">
+            Explorez la diversité des orthoptères à travers une classification moderne et des outils d'identification interactifs. 
+            Découvrez les caractéristiques morphologiques, les habitats et la biologie de ces insectes fascinants.
+        </p>
+    </div>
+
+    <div class="model-section">
+        <div id="threejs-container">
+            <div class="controls-info">
+                🖱️ Clic gauche + glisser: Rotation<br>
+                🖱️ Clic droit + glisser: Panoramique<br>
+                🔄 Molette: Zoom
+            </div>
+            <div class="loading">Chargement du modèle 3D...</div>
+        </div>
+    </div>
+
+    <div class="content-sections">
+        <div class="navigation-panel">
+            <h2>Classification</h2>
+            
+            <div class="suborder-card" onclick="navigateToSuborder('caelifera')">
+                <h3>Caelifera <span class="species-count">7 espèces</span></h3>
+                <div class="scientific-name">Sous-ordre des Caelifères</div>
+                <div class="description">
+                    Les Caelifères regroupent les criquets et sauterelles à antennes courtes. 
+                    Ils se caractérisent par leurs antennes filiformes plus courtes que le corps 
+                    et leurs organes de stridulation situés sur les pattes postérieures.
+                </div>
+                <div class="characteristics">
+                    <h4>🔬 Caractéristiques principales</h4>
+                    <ul class="characteristics-list">
+                        <li>Antennes courtes et filiformes</li>
+                        <li>Tarses de 3 articles</li>
+                        <li>Organes auditifs sur l'abdomen</li>
+                        <li>Pattes postérieures adaptées au saut</li>
+                        <li>Ovipositeur court et robuste</li>
+                    </ul>
+                </div>
+                <button class="cta-button">Explorer les familles →</button>
+            </div>
+        </div>
+
+        <div class="info-section">
+            <h3>ℹ️ À propos des Orthoptères</h3>
+            <p>
+                L'ordre des Orthoptères comprend environ 20 000 espèces d'insectes 
+                caractérisés par leurs pattes postérieures adaptées au saut et leur 
+                capacité à produire des sons par stridulation.
+            </p>
+            <p>
+                Ils jouent un rôle écologique important comme herbivores, décomposeurs 
+                et proies pour de nombreux prédateurs. Certaines espèces peuvent avoir 
+                un impact économique significatif sur l'agriculture.
+            </p>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+    <script>
+        // Variables globales
+        let scene, camera, renderer, controls, model;
+        const container = document.getElementById('threejs-container');
+
+        function init() {
+            // Créer la scène
+            scene = new THREE.Scene();
+            // Pas d'arrière-plan pour la scène
+
+            // Créer la caméra
+            camera = new THREE.PerspectiveCamera(
+                75,
+                container.clientWidth / container.clientHeight,
+                0.1,
+                1000
+            );
+            camera.position.set(0, 2, 5);
+
+            // Créer le renderer avec fond transparent
+            renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+            renderer.setSize(container.clientWidth, container.clientHeight);
+            renderer.shadowMap.enabled = true;
+            renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+            renderer.setClearColor(0x000000, 0); // Fond transparent
+            container.appendChild(renderer.domElement);
+
+            // Ajouter les contrôles
+            controls = new THREE.OrbitControls(camera, renderer.domElement);
+            controls.enableDamping = true;
+            controls.dampingFactor = 0.05;
+            controls.screenSpacePanning = false;
+            controls.minDistance = 1;
+            controls.maxDistance = 20;
+
+            // Ajouter l'éclairage
+            const ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
+            scene.add(ambientLight);
+
+            const directionalLight = new THREE.DirectionalLight(0xffffff, 1.2);
+            directionalLight.position.set(10, 15, 10);
+            directionalLight.castShadow = true;
+            directionalLight.shadow.mapSize.width = 2048;
+            directionalLight.shadow.mapSize.height = 2048;
+            scene.add(directionalLight);
+
+            const pointLight = new THREE.PointLight(0xffffff, 0.7);
+            pointLight.position.set(-15, 10, -15);
+            scene.add(pointLight);
+
+            // Charger le modèle GLB
+            loadModel();
+
+            // Démarrer l'animation
+            animate();
+
+            // Gestion du redimensionnement
+            window.addEventListener('resize', onWindowResize);
+        }
+
+        function loadModel() {
+            const loader = new THREE.GLTFLoader();
+            
+            loader.load(
+                'orthopteres-3d/new_orthoptere.glb',
+                function(gltf) {
+                    // Succès du chargement
+                    model = gltf.scene;
+                    
+                    // Centrer et redimensionner le modèle
+                    const box = new THREE.Box3().setFromObject(model);
+                    const center = box.getCenter(new THREE.Vector3());
+                    const size = box.getSize(new THREE.Vector3());
+                    
+                    // Centrer le modèle
+                    model.position.sub(center);
+                    
+                    // Redimensionner pour qu'il soit visible
+                    const maxDim = Math.max(size.x, size.y, size.z);
+                    const scale = 3 / maxDim;
+                    model.scale.setScalar(scale);
+                    
+                    model.traverse(function(child) {
+                        if (child.isMesh) {
+                            child.castShadow = true;
+                            child.receiveShadow = true;
+                        }
+                    });
+                    
+                    scene.add(model);
+                    
+                    // Masquer le message de chargement
+                    const loading = container.querySelector('.loading');
+                    if (loading) loading.style.display = 'none';
+                    
+                    console.log('Modèle GLB chargé avec succès');
+                },
+                function(progress) {
+                    // Progression du chargement
+                    console.log('Chargement: ' + (progress.loaded / progress.total * 100) + '%');
+                },
+                function(error) {
+                    // Erreur de chargement
+                    console.error('Erreur lors du chargement du modèle GLB:', error);
+                    const loading = container.querySelector('.loading');
+                    if (loading) loading.textContent = 'Erreur de chargement du modèle 3D';
+                }
+            );
+        }
+
+        function onWindowResize() {
+            camera.aspect = container.clientWidth / container.clientHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(container.clientWidth, container.clientHeight);
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+            controls.update();
+            renderer.render(scene, camera);
+        }
+
+        function navigateToSuborder(suborder) {
+            if (suborder === 'caelifera') {
+                window.location.href = 'caelifera.html';
+            }
+        }
+
+        // Initialiser quand la page est chargée
+        window.addEventListener('load', init);
+    </script>
+</body>
+</html>
+

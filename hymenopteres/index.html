@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ordre: Hyménoptères - Espèces Nuisibles</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="species-data.js"></script>
+    <script src="tooltip.js"></script>
+    <script src="script.js"></script>
+</head>
+<body>
+    <header class="hero-section">
+        <div class="hero-content">
+            <h1 class="hero-title">Ordre: Hyménoptères</h1>
+            <p class="hero-subtitle">Principales espèces nuisibles aux cultures</p>
+            <div class="hero-3d-container">
+                <div id="model-viewer">
+                    <div class="hymenoptera-icon">
+                        <svg viewBox="0 0 100 100" width="200" height="150">
+                            <!-- Corps de l'hyménoptère -->
+                            <ellipse cx="50" cy="60" rx="3" ry="15" fill="#2c5530" opacity="0.8"/>
+                            <!-- Thorax -->
+                            <ellipse cx="50" cy="40" rx="4" ry="8" fill="#4a7c59" opacity="0.9"/>
+                            <!-- Tête -->
+                            <circle cx="50" cy="30" r="5" fill="#2c5530"/>
+                            <!-- Antennes -->
+                            <line x1="47" y1="27" x2="42" y2="20" stroke="#2c5530" stroke-width="1"/>
+                            <line x1="53" y1="27" x2="58" y2="20" stroke="#2c5530" stroke-width="1"/>
+                            <!-- Ailes -->
+                            <ellipse cx="45" cy="35" rx="12" ry="6" fill="rgba(255,255,255,0.7)" stroke="#4a7c59" stroke-width="0.5" transform="rotate(-20 45 35)"/>
+                            <ellipse cx="55" cy="35" rx="12" ry="6" fill="rgba(255,255,255,0.7)" stroke="#4a7c59" stroke-width="0.5" transform="rotate(20 55 35)"/>
+                            <ellipse cx="43" cy="42" rx="8" ry="4" fill="rgba(255,255,255,0.6)" stroke="#4a7c59" stroke-width="0.5" transform="rotate(-25 43 42)"/>
+                            <ellipse cx="57" cy="42" rx="8" ry="4" fill="rgba(255,255,255,0.6)" stroke="#4a7c59" stroke-width="0.5" transform="rotate(25 57 42)"/>
+                            <!-- Pattes -->
+                            <line x1="46" y1="45" x2="40" y2="55" stroke="#2c5530" stroke-width="1"/>
+                            <line x1="50" y1="47" x2="45" y2="60" stroke="#2c5530" stroke-width="1"/>
+                            <line x1="54" y1="45" x2="60" y2="55" stroke="#2c5530" stroke-width="1"/>
+                            <line x1="50" y1="47" x2="55" y2="60" stroke="#2c5530" stroke-width="1"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="model-controls">
+                    <p>Illustration interactive - Ordre des Hyménoptères</p>
+                    <p class="species-name">Insectes à métamorphose complète</p>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <div class="scroll-arrow"></div>
+        </div>
+    </header>
+
+    <nav class="navigation">
+        <div class="nav-container">
+            <ul class="nav-menu">
+                <li><a href="#species" class="nav-link">Espèces Nuisibles</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <section id="species" class="species-section">
+            <div class="container">
+                <h2 class="section-title">Principales espèces des Hyménoptères nuisibles aux cultures</h2>
+                
+                <!-- Affichage horizontal des 3 espèces -->
+                <div class="horizontal-species-grid">
+                    <div class="species-card" data-species="cephus-pygmaeus">
+                        <div class="species-image">
+                            <img src="images/cephidae_pygmaeus.jpg" alt="Cephus pygmaeus">
+                        </div>
+                        <div class="species-info">
+                            <h4>Cephus pygmaeus</h4>
+                            <p class="species-common-name">Cèphe du blé</p>
+                            <p class="species-family">Cephidae</p>
+                        </div>
+                    </div>
+                    
+                    <div class="species-card" data-species="hoplocampa-testudinea">
+                        <div class="species-image">
+                            <img src="images/hoplocampa_testudinea.jpg" alt="Hoplocampa testudinea">
+                        </div>
+                        <div class="species-info">
+                            <h4>Hoplocampa testudinea</h4>
+                            <p class="species-common-name">Hoplocampe du pommier</p>
+                            <p class="species-family">Tenthredinidae</p>
+                        </div>
+                    </div>
+                    
+                    <div class="species-card" data-species="tapinoma-simrothi">
+                        <div class="species-image">
+                            <img src="images/tapinoma_simrothi.jpg" alt="Tapinoma simrothi">
+                        </div>
+                        <div class="species-info">
+                            <h4>Tapinoma simrothi</h4>
+                            <p class="species-common-name">Fourmi fantôme</p>
+                            <p class="species-family">Formicidae</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal pour les détails des espèces -->
+    <div id="species-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="modal-body"></div>
+        </div>
+    </div>
+
+    <!-- Tooltip pour les détails des espèces -->
+    <div id="species-tooltip" class="species-tooltip">
+        <div class="tooltip-content">
+            <h3 class="tooltip-title"></h3>
+            <div class="tooltip-details"></div>
+        </div>
+    </div>
+</body>
+</html>
+

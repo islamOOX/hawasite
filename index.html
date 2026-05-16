@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ENTOMASTER - Guide des Insectes Nuisibles</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="nav-brand">
+                <h1>ENTOMASTER</h1>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home">Accueil</a></li>
+                <li><a href="classification_par_culture.html">Classification par Culture</a></li>
+                <li><a href="#about">À propos</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home" class="hero-section">
+            <div class="hero-content">
+                <h1 class="hero-title">Découvrez les 7 grands ordres d'insectes nuisibles</h1>
+                
+                <!-- Barre de recherche globale -->
+                <div class="search-container">
+                    <div class="search-bar">
+                        <input type="text" id="globalSearch" placeholder="Rechercher une espèce (ex: Tuta absoluta, Puceron...)">
+                        <button id="searchBtn">🔍</button>
+                    </div>
+                    <div id="searchResults" class="search-results-dropdown"></div>
+                </div>
+                
+                <div class="orders-grid">
+                    <div class="order-card" data-order="coleopteres">
+                        <div class="order-icon"><img src="icons/coleopteres_gold.png" alt="Coléoptères"></div>
+                        <h3>Coléoptères</h3>
+                    </div>
+                    
+                    <div class="order-card" data-order="hemipteres">
+                        <div class="order-icon"><img src="icons/hemipteres_gold.png" alt="Hémiptères"></div>
+                        <h3>Hémiptères</h3>
+                    </div>
+                    
+                    <div class="order-card" data-order="lepidopteres">
+                        <div class="order-icon"><img src="icons/lepidopteres_gold.png" alt="Lépidoptères"></div>
+                        <h3>Lépidoptères</h3>
+                    </div>
+                    
+                    <div class="order-card" data-order="dipteres">
+                        <div class="order-icon"><img src="icons/dipteres_gold.png" alt="Diptères"></div>
+                        <h3>Diptères</h3>
+                    </div>
+                    
+                    <div class="order-card" data-order="thysanopteres">
+                        <div class="order-icon"><img src="icons/thysanopteres_gold.png" alt="Thysanoptères"></div>
+                        <h3>Thysanoptères</h3>
+                    </div>
+                    
+                    <div class="order-card" data-order="hymenopteres">
+                        <div class="order-icon"><img src="icons/hymenopteres_gold.png" alt="Hyménoptères"></div>
+                        <h3>Hyménoptères</h3>
+                    </div>
+                    
+                    <div class="order-card" data-order="orthopteres">
+                        <div class="order-icon"><img src="icons/orthopteres_gold.png" alt="Orthoptères"></div>
+                        <h3>Orthoptères</h3>
+                    </div>
+                </div>
+
+                <!-- Nouvelle section avec le lien vers la classification par culture -->
+                <div class="classification-link">
+                    <h2>Explorez également notre classification par type de culture</h2>
+                    <a href="classification_par_culture.html" class="cta-button">
+                        🌾 Voir la classification par culture
+                    </a>
+                </div>
+            </div>
+            
+            <div class="about-section">
+                <h2>À propos</h2>
+                <p>ENTOMASTER est un site éducatif basé sur des guides scientifiques qui offre une connaissance approfondie des principales espèces d'insectes nuisibles aux cultures.</p>
+                <p>Nous proposons une classification détaillée selon des critères scientifiques rigoureux, afin d'aider les passionnés, agriculteurs et chercheurs à mieux identifier, comprendre et gérer ces insectes.</p>
+            </div>
+        </section>
+
+        <section id="about" class="about-section full-width">
+            <h2>Notre Mission</h2>
+            <p>Fournir une ressource complète et accessible sur les insectes nuisibles aux cultures, avec deux approches complémentaires :</p>
+            <div class="approaches">
+                <div class="approach">
+                    <h3>Par Ordre Entomologique</h3>
+                    <p>Classification traditionnelle basée sur la taxonomie des insectes</p>
+                    <a href="#home" class="approach-link">Explorer par ordre</a>
+                </div>
+                <div class="approach">
+                    <h3>Par Type de Culture</h3>
+                    <p>Approche pratique organisée par culture affectée</p>
+                    <a href="classification_par_culture.html" class="approach-link">Explorer par culture</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="contact">
+        <div class="footer-content">
+            <p>&copy; 2023 ENTOMASTER. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <script src="global_species_data.js"></script>
+    <script src="search_script.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

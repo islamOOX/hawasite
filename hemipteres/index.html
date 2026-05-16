@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ordre: Hémiptères - Classification et Espèces</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+</head>
+<body>
+    <div id="particles"></div>
+    
+    <header class="header">
+        <div class="container">
+            <h1 class="main-title">Ordre: Hémiptères</h1>
+            <p class="subtitle">Classification scientifique et caractéristiques morphologiques</p>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+
+
+            <!-- Section sous-ordres -->
+            <section class="suborders-section">
+                <h2 class="section-title">Sous-ordres des Hémiptères</h2>
+                <div class="suborders-grid">
+                    <!-- Hétéroptères -->
+                    <div class="suborder-card" onclick="navigateToSuborder('heteroptera')">
+                        <div class="card-header">
+                            <h3 class="card-title">Sous-ordre: Hétéroptères</h3>
+                            <div class="card-subtitle">Punaises</div>
+                        </div>
+                        <div class="card-content">
+                            <div class="characteristics">
+                                <h4>Caractères généraux:</h4>
+                                <ul>
+                                    <li>30.000 espèces (plus de 60 familles)</li>
+                                    <li>Taille variable (1 mm à plus de 100 mm)</li>
+                                    <li>Développement hétérométabole-paurométabole</li>
+                                    <li>Tête presque toujours libre, généralement prognathe</li>
+                                    <li>Ailes antérieures partiellement coriaces (hémélytres)</li>
+                                </ul>
+                            </div>
+                            <div class="families-count">
+                                <span class="count">3 familles</span>
+                                <span class="species-count">10 espèces</span>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <span class="explore-btn">Explorer les espèces →</span>
+                        </div>
+                    </div>
+
+                    <!-- Auchenorrhyncha -->
+                    <div class="suborder-card" onclick="navigateToSuborder('auchenorrhyncha')">
+                        <div class="card-header">
+                            <h3 class="card-title">Sous-ordre: Auchenorrhyncha</h3>
+                            <div class="card-subtitle">Cicadelles et apparentés</div>
+                        </div>
+                        <div class="card-content">
+                            <div class="characteristics">
+                                <h4>Caractères généraux:</h4>
+                                <ul>
+                                    <li>Insectes ptérygotes</li>
+                                    <li>Appareil buccal piqueur-suceur</li>
+                                    <li>4 ailes membraneuses disposées en toit</li>
+                                    <li>Antennes courtes (1 à 3 articles)</li>
+                                    <li>Tarses de 3 articles</li>
+                                </ul>
+                            </div>
+                            <div class="families-count">
+                                <span class="count">2 familles</span>
+                                <span class="species-count">3 espèces</span>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <span class="explore-btn">Explorer les espèces →</span>
+                        </div>
+                    </div>
+
+                    <!-- Sternorrhyncha -->
+                    <div class="suborder-card" onclick="navigateToSuborder('sternorrhyncha')">
+                        <div class="card-header">
+                            <h3 class="card-title">Sous-ordre: Sternorrhyncha</h3>
+                            <div class="card-subtitle">Pucerons, cochenilles et aleurodes</div>
+                        </div>
+                        <div class="card-content">
+                            <div class="characteristics">
+                                <h4>Caractères généraux:</h4>
+                                <ul>
+                                    <li>Appareil buccal piqueur-suceur</li>
+                                    <li>Rostre inséré en avant des pattes antérieures</li>
+                                    <li>Antennes filiformes</li>
+                                    <li>Dimorphisme sexuel souvent marqué</li>
+                                    <li>Reproduction souvent par parthénogenèse</li>
+                                </ul>
+                            </div>
+                            <div class="families-count">
+                                <span class="count">6 familles</span>
+                                <span class="species-count">12 espèces</span>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <span class="explore-btn">Explorer les espèces →</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section informations générales -->
+            <section class="info-section">
+                <h2 class="section-title">Informations générales</h2>
+                <div class="info-grid">
+                    <div class="info-card">
+                        <h3>Classification</h3>
+                        <p>L'ordre des Hémiptères comprend plus de 80 000 espèces décrites, réparties en plusieurs sous-ordres. Ces insectes sont caractérisés par leur appareil buccal piqueur-suceur.</p>
+                    </div>
+                    <div class="info-card">
+                        <h3>Importance économique</h3>
+                        <p>De nombreuses espèces d'hémiptères sont des ravageurs importants des cultures agricoles, causant des dégâts directs par leur alimentation et indirects par la transmission de virus.</p>
+                    </div>
+                    <div class="info-card">
+                        <h3>Écologie</h3>
+                        <p>Les hémiptères occupent une grande variété d'habitats et présentent des modes de vie très diversifiés, depuis les espèces aquatiques jusqu'aux parasites spécialisés.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Classification des Hémiptères - Guide scientifique</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
+

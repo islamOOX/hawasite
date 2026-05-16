@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ordre: Coléoptères - Principales Espèces Nuisibles aux Cultures</title>
+    <link rel="stylesheet" href="style.css">
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+</head>
+<body>
+    <!-- Particules d'arrière-plan -->
+    <div class="particles" id="particles"></div>
+
+    <div class="container">
+        <!-- En-tête -->
+        <header class="header">
+            <h1>Ordre: Coléoptères</h1>
+            <p class="subtitle">Principales espèces nuisibles aux cultures</p>
+            <p>Classification scientifique et caractéristiques morphologiques</p>
+        </header>
+
+        <!-- Modèle 3D -->
+        <div class="model-3d-container">
+            <h2>Modèle 3D - Morphologie générale d'un Coléoptère</h2>
+            <div id="model-viewer">
+                <model-viewer 
+                    src="coleoptere.glb" 
+                    alt="Modèle 3D d'un Coléoptère"
+                    auto-rotate 
+                    camera-controls 
+                    background-color="#f8f9fa"
+                    shadow-intensity="1"
+                    camera-orbit="45deg 75deg 2.5m"
+                    style="width: 100%; height: 100%;">
+                    <div slot="progress-bar" style="display: none;"></div>
+                </model-viewer>
+            </div>
+            <p style="text-align: center; margin-top: 15px; color: #666; font-style: italic;">
+                Modèle 3D interactif - Utilisez la souris pour faire tourner et zoomer
+            </p>
+        </div>
+
+        <!-- Sections des familles -->
+        <main id="species-container">
+            <!-- Le contenu sera généré dynamiquement par JavaScript -->
+        </main>
+    </div>
+
+    <!-- Tooltip pour les détails -->
+    <div id="species-tooltip" class="species-tooltip">
+        <div class="tooltip-title"></div>
+        <div class="tooltip-content"></div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="species_data.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
+
