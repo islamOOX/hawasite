@@ -1,124 +1,102 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ordre: Hyménoptères - Espèces Nuisibles</title>
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <script src="species-data.js"></script>
-    <script src="tooltip.js"></script>
-    <script src="script.js"></script>
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hyménoptères – Espèces Nuisibles | ENTOMASTER</title>
+    <meta name="description" content="3 espèces de hyménoptères nuisibles aux cultures.">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    
+    <script src="../search_index.js"></script>
 </head>
 <body>
-    <header class="hero-section">
-        <div class="hero-content">
-            <h1 class="hero-title">Ordre: Hyménoptères</h1>
-            <p class="hero-subtitle">Principales espèces nuisibles aux cultures</p>
-            <div class="hero-3d-container">
-                <div id="model-viewer">
-                    <div class="hymenoptera-icon">
-                        <svg viewBox="0 0 100 100" width="200" height="150">
-                            <!-- Corps de l'hyménoptère -->
-                            <ellipse cx="50" cy="60" rx="3" ry="15" fill="#2c5530" opacity="0.8"/>
-                            <!-- Thorax -->
-                            <ellipse cx="50" cy="40" rx="4" ry="8" fill="#4a7c59" opacity="0.9"/>
-                            <!-- Tête -->
-                            <circle cx="50" cy="30" r="5" fill="#2c5530"/>
-                            <!-- Antennes -->
-                            <line x1="47" y1="27" x2="42" y2="20" stroke="#2c5530" stroke-width="1"/>
-                            <line x1="53" y1="27" x2="58" y2="20" stroke="#2c5530" stroke-width="1"/>
-                            <!-- Ailes -->
-                            <ellipse cx="45" cy="35" rx="12" ry="6" fill="rgba(255,255,255,0.7)" stroke="#4a7c59" stroke-width="0.5" transform="rotate(-20 45 35)"/>
-                            <ellipse cx="55" cy="35" rx="12" ry="6" fill="rgba(255,255,255,0.7)" stroke="#4a7c59" stroke-width="0.5" transform="rotate(20 55 35)"/>
-                            <ellipse cx="43" cy="42" rx="8" ry="4" fill="rgba(255,255,255,0.6)" stroke="#4a7c59" stroke-width="0.5" transform="rotate(-25 43 42)"/>
-                            <ellipse cx="57" cy="42" rx="8" ry="4" fill="rgba(255,255,255,0.6)" stroke="#4a7c59" stroke-width="0.5" transform="rotate(25 57 42)"/>
-                            <!-- Pattes -->
-                            <line x1="46" y1="45" x2="40" y2="55" stroke="#2c5530" stroke-width="1"/>
-                            <line x1="50" y1="47" x2="45" y2="60" stroke="#2c5530" stroke-width="1"/>
-                            <line x1="54" y1="45" x2="60" y2="55" stroke="#2c5530" stroke-width="1"/>
-                            <line x1="50" y1="47" x2="55" y2="60" stroke="#2c5530" stroke-width="1"/>
-                        </svg>
-                    </div>
-                </div>
-                <div class="model-controls">
-                    <p>Illustration interactive - Ordre des Hyménoptères</p>
-                    <p class="species-name">Insectes à métamorphose complète</p>
-                </div>
-            </div>
-        </div>
-        <div class="scroll-indicator">
-            <div class="scroll-arrow"></div>
-        </div>
-    </header>
-
-    <nav class="navigation">
-        <div class="nav-container">
-            <ul class="nav-menu">
-                <li><a href="#species" class="nav-link">Espèces Nuisibles</a></li>
-            </ul>
-        </div>
-    </nav>
-
-    <main class="main-content">
-        <section id="species" class="species-section">
-            <div class="container">
-                <h2 class="section-title">Principales espèces des Hyménoptères nuisibles aux cultures</h2>
-                
-                <!-- Affichage horizontal des 3 espèces -->
-                <div class="horizontal-species-grid">
-                    <div class="species-card" data-species="cephus-pygmaeus">
-                        <div class="species-image">
-                            <img src="images/cephidae_pygmaeus.jpg" alt="Cephus pygmaeus">
-                        </div>
-                        <div class="species-info">
-                            <h4>Cephus pygmaeus</h4>
-                            <p class="species-common-name">Cèphe du blé</p>
-                            <p class="species-family">Cephidae</p>
-                        </div>
-                    </div>
-                    
-                    <div class="species-card" data-species="hoplocampa-testudinea">
-                        <div class="species-image">
-                            <img src="images/hoplocampa_testudinea.jpg" alt="Hoplocampa testudinea">
-                        </div>
-                        <div class="species-info">
-                            <h4>Hoplocampa testudinea</h4>
-                            <p class="species-common-name">Hoplocampe du pommier</p>
-                            <p class="species-family">Tenthredinidae</p>
-                        </div>
-                    </div>
-                    
-                    <div class="species-card" data-species="tapinoma-simrothi">
-                        <div class="species-image">
-                            <img src="images/tapinoma_simrothi.jpg" alt="Tapinoma simrothi">
-                        </div>
-                        <div class="species-info">
-                            <h4>Tapinoma simrothi</h4>
-                            <p class="species-common-name">Fourmi fantôme</p>
-                            <p class="species-family">Formicidae</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- Modal pour les détails des espèces -->
-    <div id="species-modal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <div id="modal-body"></div>
-        </div>
+<header>
+  <nav class="navbar" role="navigation" aria-label="Navigation principale">
+    <div class="nav-brand">
+      <a href="../index.html" class="nav-brand-link">
+        <span class="brand-name">ENTOMASTER</span>
+        <span class="brand-sub">Entomologie Agricole</span>
+      </a>
     </div>
-
-    <!-- Tooltip pour les détails des espèces -->
-    <div id="species-tooltip" class="species-tooltip">
-        <div class="tooltip-content">
-            <h3 class="tooltip-title"></h3>
-            <div class="tooltip-details"></div>
-        </div>
+    <div class="nav-search" role="search">
+      <div class="search-wrapper">
+        <svg class="search-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="9" cy="9" r="6"/><path d="m15 15 3 3"/>
+        </svg>
+        <input type="search" id="globalSearch" placeholder="Rechercher parmi 115 espèces..." autocomplete="off">
+      </div>
+      <div id="searchDropdown" class="search-dropdown" role="listbox" aria-live="polite"></div>
     </div>
-</body>
-</html>
-
+    <ul class="nav-menu" id="navMenu" role="menubar">
+      <li><a href="../index.html" >Accueil</a></li>
+      <li class="has-dropdown">
+        <a href="#">Par Ordre &#x25BE;</a>
+        <ul class="dropdown-menu"><li><a href="../coleopteres/index.html">&#x1FAB2; Coléoptères</a></li>
+<li><a href="../lepidopteres/index.html">&#x1F98B; Lépidoptères</a></li>
+<li><a href="../dipteres/index.html">&#x1FAB0; Diptères</a></li>
+<li><a href="../hemipteres/index.html">&#x1F41B; Hémiptères</a></li>
+<li><a href="../thysanopteres/index.html">&#x1F52C; Thysanoptères</a></li>
+<li><a href="../hymenopteres/index.html"  aria-current=page>&#x1F41D; Hyménoptères</a></li>
+<li><a href="../orthopteres/index.html">&#x1F997; Orthoptères</a></li></ul>
+      </li>
+      <li><a href="../classification_par_culture.html" >Par Culture</a></li>
+      <li><a href="../index.html#references">Références</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+</header>
+<nav aria-label="Fil d'Ariane" class="breadcrumb-nav">
+  <ol class="breadcrumb">
+    <li><a href="../index.html">Accueil</a></li>
+    <li aria-current="page">Hyménoptères</li>
+  </ol>
+</nav>
+<div class="page-wrap">
+  <div class="page-header">
+    <p class="page-order-label">Ordre : <strong>Hymenoptera</strong> (Linné, 1758)</p>
+    <h1 class="page-title">&#x1F41D; Hyménoptères</h1>
+    <p class="page-subtitle">3 espèces nuisibles aux cultures — Classification par famille</p>
+    <div class="taxo-pills"><span class="taxo-pill">Cephidae</span><span class="taxo-pill">Tenthredinidae</span><span class="taxo-pill">Cynipidae</span><span class="taxo-pill">Formicidae</span></div>
+  </div>
+  <div class="filter-bar" role="search">
+    <input type="search" id="spSearch" placeholder="Filtrer par nom, famille, plante hôte..." aria-label="Filtrer">
+    <select id="famFilter" aria-label="Filtrer par famille">
+      <option value="">Toutes les familles</option>
+      <option value="cephidae">Cephidae</option>
+<option value="tenthredinidae">Tenthredinidae</option>
+<option value="cynipidae">Cynipidae</option>
+<option value="formicidae">Formicidae</option>
+    </select>
+    <span class="filter-count" id="filterCount"></span>
+  </div>
+  
+  <main id="species-container" aria-label="Liste des hyménoptères"></main>
+  <div class="no-results-msg" id="noResults">
+    <p>Aucune espèce ne correspond à votre filtre.</p>
+    <button class="reset-btn" id="resetBtn">Réinitialiser</button>
+  </div>
+  <aside class="page-refs">
+    <h3>&#x1F4DA; Sources – Hyménoptères</h3>
+    <ul><li><strong>Gauld, I. & Bolton, B.</strong> (1988). <em>The Hymenoptera</em>. Oxford Univ. Press</li>
+<li><strong>EPPO</strong> (2024). <em>Pest datasheets – Hymenoptera</em>. <a href="https://gd.eppo.int" target="_blank" rel="noopener">https://gd.eppo.int</a></li></ul>
+  </aside>
+</div>
+<div id="speciesModal" class="species-modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" hidden>
+  <div class="modal-overlay" id="modalOverlay"></div>
+  <div class="modal-panel">
+    <button class="modal-close" id="modalClose" aria-label="Fermer">&#x2715;</button>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>
+<div id="spTooltip" class="sp-tooltip" role="tooltip"></div>
+<button id="backToTop" aria-label="Haut de page">&#x25B2;</button>
+<footer role="contentinfo" style="background:rgba(4,9,5,.98);border-top:1px solid var(--border);padding:2rem;text-align:center">
+  <p style="font-size:.8rem;color:rgba(136,170,144,.45)">&copy; 2025 ENTOMASTER — <a href="../index.html" style="color:var(--gold)">Accueil</a></p>
+</footer>
+  <script src="species-data.js"></script>
+<script src="../shared.js"></script>
+<script src="../order_script.js"></script>
+</body></html>

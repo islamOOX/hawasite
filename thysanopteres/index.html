@@ -1,562 +1,115 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thysanoptères - Classification et Identification</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #2d5016 0%, #4a7c59 50%, #6b8e23 100%);
-            color: #333;
-            min-height: 100vh;
-            position: relative;
-        }
-
-        .header {
-            text-align: center;
-            padding: 40px 20px;
-            background: rgba(255, 255, 255, 0.95);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            backdrop-filter: blur(10px);
-        }
-
-        .header h1 {
-            font-size: 3rem;
-            color: #2d5016;
-            margin-bottom: 15px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-            font-weight: 700;
-        }
-
-        .header .subtitle {
-            font-size: 1.4rem;
-            color: #4a7c59;
-            font-weight: 300;
-            margin-bottom: 10px;
-        }
-
-        .header .description {
-            font-size: 1.1rem;
-            color: #666;
-            max-width: 800px;
-            margin: 0 auto;
-            line-height: 1.6;
-        }
-
-        .top-section {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 30px;
-            padding: 30px;
-            max-width: 1600px;
-            margin: 30px auto;
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 20px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
-        }
-
-        .model-container, .image-container {
-            flex: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-        }
-
-        #threejs-container {
-            width: 100%;
-            height: 400px; /* Hauteur fixe pour le modèle */
-            cursor: grab;
-            background: transparent;
-        }
-
-        #threejs-container:active {
-            cursor: grabbing;
-        }
-
-        .controls-info {
-            position: absolute;
-            top: 15px;
-            left: 15px;
-            background: rgba(45, 80, 22, 0.9);
-            color: white;
-            padding: 10px;
-            border-radius: 8px;
-            font-size: 0.8rem;
-            z-index: 100;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-        }
-
-        .loading {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 1.1rem;
-            color: #4a7c59;
-            z-index: 10;
-            background: rgba(255, 255, 255, 0.9);
-            padding: 15px;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        .illustration-image {
-            max-width: 100%;
-            max-height: 400px;
-            border-radius: 15px;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-        }
-
-        .content-sections {
-            display: flex;
-            flex-wrap: wrap; /* Permet aux éléments de passer à la ligne */
-            gap: 30px;
-            padding: 30px;
-            max-width: 1600px;
-            margin: 0 auto;
-        }
-
-        .navigation-panel {
-            flex: 2; /* Prend plus de place */
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 20px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
-            padding: 30px;
-            overflow-y: auto;
-            display: flex; /* Pour les sous-ordres côte à côte */
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-
-        .navigation-panel h2 {
-            width: 100%; /* Le titre prend toute la largeur */
-            color: #2d5016;
-            margin-bottom: 25px;
-            font-size: 2rem;
-            border-bottom: 3px solid #4a7c59;
-            padding-bottom: 15px;
-            text-align: center;
-        }
-
-        .suborder-card {
-            flex: 1; /* Chaque carte prend une part égale */
-            min-width: 300px; /* Largeur minimale pour éviter un trop petit affichage */
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-            border-radius: 15px;
-            padding: 25px;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-            border-left: 5px solid #4a7c59;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .suborder-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(74, 124, 89, 0.1) 0%, rgba(45, 80, 22, 0.1) 100%);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .suborder-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
-            border-left-color: #2d5016;
-        }
-
-        .suborder-card:hover::before {
-            opacity: 1;
-        }
-
-        .suborder-card h3 {
-            color: #2d5016;
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-            font-weight: 600;
-            position: relative;
-            z-index: 1;
-        }
-
-        .suborder-card .scientific-name {
-            font-style: italic;
-            color: #4a7c59;
-            font-size: 1.1rem;
-            margin-bottom: 10px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .suborder-card .description {
-            color: #666;
-            line-height: 1.6;
-            margin-bottom: 15px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .suborder-card .characteristics {
-            background: rgba(74, 124, 89, 0.1);
-            border-radius: 8px;
-            padding: 15px;
-            margin-top: 15px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .suborder-card .characteristics h4 {
-            color: #2d5016;
-            margin-bottom: 10px;
-            font-size: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .characteristics-list {
-            list-style: none;
-            padding: 0;
-        }
-
-        .characteristics-list li {
-            padding: 5px 0;
-            color: #555;
-            position: relative;
-            padding-left: 20px;
-        }
-
-        .characteristics-list li::before {
-            content: "🔸";
-            position: absolute;
-            left: 0;
-            top: 5px;
-        }
-
-        .cta-button {
-            background: linear-gradient(135deg, #4a7c59 0%, #2d5016 100%);
-            color: white;
-            border: none;
-            padding: 12px 25px;
-            border-radius: 25px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin-top: 15px;
-            position: relative;
-            z-index: 1;
-            box-shadow: 0 4px 15px rgba(74, 124, 89, 0.3);
-        }
-
-        .cta-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(74, 124, 89, 0.4);
-        }
-
-        .info-section {
-            flex: 1; /* Prend moins de place, se place à droite */
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 15px;
-            padding: 25px;
-            margin-top: 0;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        .info-section h3 {
-            color: #2d5016;
-            margin-bottom: 15px;
-            font-size: 1.3rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .info-section p {
-            color: #666;
-            line-height: 1.6;
-            margin-bottom: 10px;
-        }
-
-        @media (max-width: 768px) {
-            .top-section {
-                flex-direction: column;
-            }
-            .content-sections {
-                flex-direction: column;
-                padding: 15px;
-                gap: 20px;
-            }
-
-            .navigation-panel {
-                flex-direction: column;
-            }
-
-            .suborder-card {
-                min-width: unset;
-            }
-
-            .header h1 {
-                font-size: 2.2rem;
-            }
-
-            .header .subtitle {
-                font-size: 1.2rem;
-            }
-
-            #threejs-container {
-                height: 300px;
-            }
-        }
-
-        .species-count {
-            display: inline-block;
-            background: #4a7c59;
-            color: white;
-            padding: 4px 12px;
-            border-radius: 15px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            margin-left: 10px;
-        }
-    </style>
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thysanoptères – Espèces Nuisibles | ENTOMASTER</title>
+    <meta name="description" content="5 espèces de thysanoptères nuisibles aux cultures.">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+    <script src="../search_index.js"></script>
 </head>
 <body>
-    <div class="header">
-        <h1>Thysanoptères</h1>
-        <p class="subtitle">Classification et Identification</p>
-        <p class="description">
-            Explorez la diversité des thysanoptères (thrips) à travers une classification moderne et des outils d'identification interactifs. 
-            Découvrez les caractéristiques morphologiques, les habitats et la biologie de ces insectes fascinants.
-        </p>
+<header>
+  <nav class="navbar" role="navigation" aria-label="Navigation principale">
+    <div class="nav-brand">
+      <a href="../index.html" class="nav-brand-link">
+        <span class="brand-name">ENTOMASTER</span>
+        <span class="brand-sub">Entomologie Agricole</span>
+      </a>
     </div>
-
-    <div class="top-section">
-        <div class="model-container">
-            <div id="threejs-container">
-                <div class="controls-info">
-                    🖱️ Clic gauche + glisser: Rotation<br>
-                    🖱️ Clic droit + glisser: Panoramique<br>
-                    🔄 Molette: Zoom
-                </div>
-                <div class="loading">Chargement du modèle 3D...</div>
-            </div>
-        </div>
-        <div class="image-container">
-            <img src="thrips_illustration.webp" alt="Illustration Thrips" class="illustration-image">
-        </div>
+    <div class="nav-search" role="search">
+      <div class="search-wrapper">
+        <svg class="search-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="9" cy="9" r="6"/><path d="m15 15 3 3"/>
+        </svg>
+        <input type="search" id="globalSearch" placeholder="Rechercher parmi 115 espèces..." autocomplete="off">
+      </div>
+      <div id="searchDropdown" class="search-dropdown" role="listbox" aria-live="polite"></div>
     </div>
-
-    <div class="content-sections">
-        <div class="navigation-panel">
-            <h2>Classification</h2>
-            
-            <div class="suborder-card" onclick="navigateToSuborder('terebrantia')">
-                <h3>Terebrantia <span class="species-count">À définir</span></h3>
-                <div class="scientific-name">Sous-ordre des Térébrants</div>
-                <div class="description">
-                    Les Terebrantia sont un sous-ordre de thysanoptères caractérisés par un ovipositeur en forme de scie, 
-                    utilisé pour insérer les œufs dans les tissus végétaux. La plupart des espèces sont phytophages.
-                </div>
-                <div class="characteristics">
-                    <h4>🔬 Caractéristiques principales</h4>
-                    <ul class="characteristics-list">
-                        <li>Ovipositeur en forme de scie</li>
-                        <li>Antennes de 6 à 9 segments</li>
-                        <li>Ailes avec des franges de poils</li>
-                        <li>Larves actives, pupes non encapsulées</li>
-                    </ul>
-                </div>
-                <button class="cta-button" onclick="event.stopPropagation(); window.location.href='thripidae.html'">Explorer les familles →</button>
-            </div>
-
-            <div class="suborder-card" onclick="navigateToSuborder('tubulifera')">
-                <h3>Tubulifera <span class="species-count">À définir</span></h3>
-                <div class="scientific-name">Sous-ordre des Tubulifères</div>
-                <div class="description">
-                    Les Tubulifera se distinguent par l'absence d'ovipositeur et la présence d'un tube anal à l'extrémité de l'abdomen. 
-                    Ce sous-ordre comprend des espèces phytophages, prédatrices et mycophages.
-                </div>
-                <div class="characteristics">
-                    <h4>🔬 Caractéristiques principales</h4>
-                    <ul class="characteristics-list">
-                        <li>Absence d'ovipositeur</li>
-                        <li>Tube anal à l'extrémité de l'abdomen</li>
-                        <li>Antennes de 3 à 8 segments</li>
-                        <li>Pupes encapsulées dans un cocon</li>
-                    </ul>
-                </div>
-                <button class="cta-button" onclick="event.stopPropagation(); window.location.href='phlaeothripidae.html'">Explorer les familles →</button>
-            </div>
-        </div>
-
-        <div class="info-section">
-            <h3>ℹ️ À propos des Thysanoptères</h3>
-            <p>
-                L'ordre des Thysanoptères, communément appelés thrips, regroupe de petits insectes 
-                caractérisés par leurs ailes étroites et frangées de poils. Ils sont souvent considérés 
-                comme des ravageurs agricoles, mais certaines espèces sont bénéfiques en tant que prédateurs.
-            </p>
-            <p>
-                Leur taille varie généralement de 0,5 à 5 mm. Ils se nourrissent en perçant les cellules 
-                végétales et en aspirant le contenu, causant des déformations et des décolorations sur les plantes.
-            </p>
-        </div>
+    <ul class="nav-menu" id="navMenu" role="menubar">
+      <li><a href="../index.html" >Accueil</a></li>
+      <li class="has-dropdown">
+        <a href="#">Par Ordre &#x25BE;</a>
+        <ul class="dropdown-menu"><li><a href="../coleopteres/index.html">&#x1FAB2; Coléoptères</a></li>
+<li><a href="../lepidopteres/index.html">&#x1F98B; Lépidoptères</a></li>
+<li><a href="../dipteres/index.html">&#x1FAB0; Diptères</a></li>
+<li><a href="../hemipteres/index.html">&#x1F41B; Hémiptères</a></li>
+<li><a href="../thysanopteres/index.html"  aria-current=page>&#x1F52C; Thysanoptères</a></li>
+<li><a href="../hymenopteres/index.html">&#x1F41D; Hyménoptères</a></li>
+<li><a href="../orthopteres/index.html">&#x1F997; Orthoptères</a></li></ul>
+      </li>
+      <li><a href="../classification_par_culture.html" >Par Culture</a></li>
+      <li><a href="../index.html#references">Références</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+</header>
+<nav aria-label="Fil d'Ariane" class="breadcrumb-nav">
+  <ol class="breadcrumb">
+    <li><a href="../index.html">Accueil</a></li>
+    <li aria-current="page">Thysanoptères</li>
+  </ol>
+</nav>
+<div class="page-wrap">
+  <div class="page-header">
+    <p class="page-order-label">Ordre : <strong>Thysanoptera</strong> (Haliday, 1836)</p>
+    <h1 class="page-title">&#x1F52C; Thysanoptères</h1>
+    <p class="page-subtitle">5 espèces nuisibles aux cultures — Classification par famille</p>
+    <div class="taxo-pills"><span class="taxo-pill">Thripidae</span><span class="taxo-pill">Phlaeothripidae</span></div>
+  </div>
+  <div class="filter-bar" role="search">
+    <input type="search" id="spSearch" placeholder="Filtrer par nom, famille, plante hôte..." aria-label="Filtrer">
+    <select id="famFilter" aria-label="Filtrer par famille">
+      <option value="">Toutes les familles</option>
+      <option value="thripidae">Thripidae</option>
+<option value="phlaeothripidae">Phlaeothripidae</option>
+    </select>
+    <span class="filter-count" id="filterCount"></span>
+  </div>
+  
+  <div class="model-block">
+    <h2>Morphologie générale — Modèle 3D interactif</h2>
+    <div class="model-viewer-wrap">
+      <model-viewer src="thrips_model.glb" alt="Modèle 3D Thysanoptères"
+          auto-rotate camera-controls shadow-intensity="1"
+          camera-orbit="45deg 75deg 2.5m" style="width:100%;height:100%" loading="lazy">
+      </model-viewer>
     </div>
+    <p class="model-caption">&#x1F5B1;&#xFE0F; Glisser pour pivoter · Scroll pour zoomer</p>
+    <div class="model-note">
+      <strong>Thysanoptera</strong> (Haliday, 1836) — Très petits insectes (0.5–5 mm) à ailes frangées. Causent des dégâts par piqûres et transmettent des virus (TSWV). Parmi les vecteurs les plus redoutés.
+      <br><small>Source : <a href="https://www.catalogueoflife.org" target="_blank" rel="noopener">Catalogue of Life 2024</a></small>
+    </div>
+  </div>
+  <main id="species-container" aria-label="Liste des thysanoptères"></main>
+  <div class="no-results-msg" id="noResults">
+    <p>Aucune espèce ne correspond à votre filtre.</p>
+    <button class="reset-btn" id="resetBtn">Réinitialiser</button>
+  </div>
+  <aside class="page-refs">
+    <h3>&#x1F4DA; Sources – Thysanoptères</h3>
+    <ul><li><strong>Mound, L.A.</strong> (1997). <em>Thysanoptera: Diversity and Interactions</em>. Ann. Rev. Entomol. 42</li>
+<li><strong>Kirk, W.D.J.</strong> (1997). <em>Thrips. Naturalist Handbooks 25</em>. Richmond Publ.</li>
+<li><strong>EPPO</strong> (2024). <em>Pest datasheets – Thysanoptera</em>. <a href="https://gd.eppo.int" target="_blank" rel="noopener">https://gd.eppo.int</a></li></ul>
+  </aside>
+</div>
+<div id="speciesModal" class="species-modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" hidden>
+  <div class="modal-overlay" id="modalOverlay"></div>
+  <div class="modal-panel">
+    <button class="modal-close" id="modalClose" aria-label="Fermer">&#x2715;</button>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>
+<div id="spTooltip" class="sp-tooltip" role="tooltip"></div>
+<button id="backToTop" aria-label="Haut de page">&#x25B2;</button>
+<footer role="contentinfo" style="background:rgba(4,9,5,.98);border-top:1px solid var(--border);padding:2rem;text-align:center">
+  <p style="font-size:.8rem;color:rgba(136,170,144,.45)">&copy; 2025 ENTOMASTER — <a href="../index.html" style="color:var(--gold)">Accueil</a></p>
+</footer>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
-    <script>
-        // Variables globales
-        let scene, camera, renderer, controls, model;
-        const container = document.getElementById('threejs-container');
-
-        function init() {
-            // Créer la scène
-            scene = new THREE.Scene();
-
-            // Créer la caméra
-            camera = new THREE.PerspectiveCamera(
-                75,
-                container.clientWidth / container.clientHeight,
-                0.1,
-                1000
-            );
-            camera.position.set(0, 0, 5); // Ajuster la position de la caméra pour le nouveau modèle
-
-            // Créer le renderer avec fond transparent
-            renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-            renderer.setSize(container.clientWidth, container.clientHeight);
-            renderer.shadowMap.enabled = true;
-            renderer.shadowMap.type = THREE.PCFSoftShadowMap;
-            renderer.setClearColor(0x000000, 0); // Fond transparent
-            container.appendChild(renderer.domElement);
-
-            // Ajouter les contrôles
-            controls = new THREE.OrbitControls(camera, renderer.domElement);
-            controls.enableDamping = true;
-            controls.dampingFactor = 0.05;
-            controls.screenSpacePanning = false;
-            controls.minDistance = 1;
-            controls.maxDistance = 20;
-
-            // Ajouter l'éclairage
-            const ambientLight = new THREE.AmbientLight(0x404040, 2.0); // Augmenter l'intensité
-            scene.add(ambientLight);
-
-            const directionalLight = new THREE.DirectionalLight(0xffffff, 3.0); // Augmenter l'intensité
-            directionalLight.position.set(10, 10, 5);
-            directionalLight.castShadow = true;
-            directionalLight.shadow.mapSize.width = 2048;
-            directionalLight.shadow.mapSize.height = 2048;
-            scene.add(directionalLight);
-
-            const pointLight = new THREE.PointLight(0xffffff, 1.5); // Augmenter l'intensité
-            pointLight.position.set(-10, 10, -10);
-            scene.add(pointLight);
-
-            // Ajouter une lumière hémisphérique pour un éclairage plus doux et global
-            const hemiLight = new THREE.HemisphereLight(0xffffff, 0x444444, 1.5); // Ciel, sol, intensité
-            scene.add(hemiLight);
-
-            // Charger le modèle GLB
-            loadModel();
-
-            // Démarrer l'animation
-            animate();
-
-            // Gestion du redimensionnement
-            window.addEventListener('resize', onWindowResize);
-        }
-
-        function loadModel() {
-            const loader = new THREE.GLTFLoader();
-            
-            loader.load(
-                'thrips_model.glb',
-                function(gltf) {
-                    // Succès du chargement
-                    model = gltf.scene;
-                    
-                    // Centrer et redimensionner le modèle
-                    const box = new THREE.Box3().setFromObject(model);
-                    const center = box.getCenter(new THREE.Vector3());
-                    const size = box.getSize(new THREE.Vector3());
-                    
-                    // Centrer le modèle
-                    model.position.sub(center);
-                    
-                    // Redimensionner pour qu'il soit visible
-                    const maxDim = Math.max(size.x, size.y, size.z);
-                    const scale = 3 / maxDim; // Ajuster l'échelle si nécessaire
-                    model.scale.setScalar(scale);
-                    
-                    model.traverse(function(child) {
-                        if (child.isMesh) {
-                            child.castShadow = true;
-                            child.receiveShadow = true;
-                        }
-                    });
-                    
-                    scene.add(model);
-                    
-                    // Masquer le message de chargement
-                    const loading = container.querySelector('.loading');
-                    if (loading) loading.style.display = 'none';
-                    
-                    console.log('Modèle GLB chargé avec succès');
-                },
-                function(progress) {
-                    // Progression du chargement
-                    console.log('Chargement: ' + (progress.loaded / progress.total * 100) + '%');
-                },
-                function(error) {
-                    // Erreur de chargement
-                    console.error('Erreur lors du chargement du modèle GLB:', error);
-                    const loading = container.querySelector('.loading');
-                    if (loading) loading.textContent = 'Erreur de chargement du modèle 3D';
-                }
-            );
-        }
-
-        function onWindowResize() {
-            camera.aspect = container.clientWidth / container.clientHeight;
-            camera.updateProjectionMatrix();
-            renderer.setSize(container.clientWidth, container.clientHeight);
-        }
-
-        function animate() {
-            requestAnimationFrame(animate);
-            controls.update();
-            renderer.render(scene, camera);
-        }
-
-        function navigateToSuborder(suborder) {
-            if (suborder === 'terebrantia') {
-                window.location.href = 'terebrantia.html';
-            } else if (suborder === 'tubulifera') {
-                window.location.href = 'tubulifera.html';
-            }
-        }
-
-        // Initialiser quand la page est chargée
-        window.addEventListener('load', init);
-    </script>
-</body>
-</html>
-
-
+<script src="../shared.js"></script>
+<script src="../order_script.js"></script>
+</body></html>

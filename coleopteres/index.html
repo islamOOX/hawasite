@@ -1,60 +1,122 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ordre: Coléoptères - Principales Espèces Nuisibles aux Cultures</title>
-    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coléoptères – Espèces Nuisibles | ENTOMASTER</title>
+    <meta name="description" content="45 espèces de coléoptères nuisibles aux cultures.">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
     <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+    <script src="../search_index.js"></script>
 </head>
 <body>
-    <!-- Particules d'arrière-plan -->
-    <div class="particles" id="particles"></div>
-
-    <div class="container">
-        <!-- En-tête -->
-        <header class="header">
-            <h1>Ordre: Coléoptères</h1>
-            <p class="subtitle">Principales espèces nuisibles aux cultures</p>
-            <p>Classification scientifique et caractéristiques morphologiques</p>
-        </header>
-
-        <!-- Modèle 3D -->
-        <div class="model-3d-container">
-            <h2>Modèle 3D - Morphologie générale d'un Coléoptère</h2>
-            <div id="model-viewer">
-                <model-viewer 
-                    src="coleoptere.glb" 
-                    alt="Modèle 3D d'un Coléoptère"
-                    auto-rotate 
-                    camera-controls 
-                    background-color="#f8f9fa"
-                    shadow-intensity="1"
-                    camera-orbit="45deg 75deg 2.5m"
-                    style="width: 100%; height: 100%;">
-                    <div slot="progress-bar" style="display: none;"></div>
-                </model-viewer>
-            </div>
-            <p style="text-align: center; margin-top: 15px; color: #666; font-style: italic;">
-                Modèle 3D interactif - Utilisez la souris pour faire tourner et zoomer
-            </p>
-        </div>
-
-        <!-- Sections des familles -->
-        <main id="species-container">
-            <!-- Le contenu sera généré dynamiquement par JavaScript -->
-        </main>
+<header>
+  <nav class="navbar" role="navigation" aria-label="Navigation principale">
+    <div class="nav-brand">
+      <a href="../index.html" class="nav-brand-link">
+        <span class="brand-name">ENTOMASTER</span>
+        <span class="brand-sub">Entomologie Agricole</span>
+      </a>
     </div>
-
-    <!-- Tooltip pour les détails -->
-    <div id="species-tooltip" class="species-tooltip">
-        <div class="tooltip-title"></div>
-        <div class="tooltip-content"></div>
+    <div class="nav-search" role="search">
+      <div class="search-wrapper">
+        <svg class="search-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="9" cy="9" r="6"/><path d="m15 15 3 3"/>
+        </svg>
+        <input type="search" id="globalSearch" placeholder="Rechercher parmi 115 espèces..." autocomplete="off">
+      </div>
+      <div id="searchDropdown" class="search-dropdown" role="listbox" aria-live="polite"></div>
     </div>
-
-    <!-- Scripts -->
-    <script src="species_data.js"></script>
-    <script src="script.js"></script>
-</body>
-</html>
-
+    <ul class="nav-menu" id="navMenu" role="menubar">
+      <li><a href="../index.html" >Accueil</a></li>
+      <li class="has-dropdown">
+        <a href="#">Par Ordre &#x25BE;</a>
+        <ul class="dropdown-menu"><li><a href="../coleopteres/index.html"  aria-current=page>&#x1FAB2; Coléoptères</a></li>
+<li><a href="../lepidopteres/index.html">&#x1F98B; Lépidoptères</a></li>
+<li><a href="../dipteres/index.html">&#x1FAB0; Diptères</a></li>
+<li><a href="../hemipteres/index.html">&#x1F41B; Hémiptères</a></li>
+<li><a href="../thysanopteres/index.html">&#x1F52C; Thysanoptères</a></li>
+<li><a href="../hymenopteres/index.html">&#x1F41D; Hyménoptères</a></li>
+<li><a href="../orthopteres/index.html">&#x1F997; Orthoptères</a></li></ul>
+      </li>
+      <li><a href="../classification_par_culture.html" >Par Culture</a></li>
+      <li><a href="../index.html#references">Références</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+</header>
+<nav aria-label="Fil d'Ariane" class="breadcrumb-nav">
+  <ol class="breadcrumb">
+    <li><a href="../index.html">Accueil</a></li>
+    <li aria-current="page">Coléoptères</li>
+  </ol>
+</nav>
+<div class="page-wrap">
+  <div class="page-header">
+    <p class="page-order-label">Ordre : <strong>Coleoptera</strong> (Linné, 1758)</p>
+    <h1 class="page-title">&#x1FAB2; Coléoptères</h1>
+    <p class="page-subtitle">45 espèces nuisibles aux cultures — Classification par famille</p>
+    <div class="taxo-pills"><span class="taxo-pill">Curculionidae</span><span class="taxo-pill">Chrysomelidae</span><span class="taxo-pill">Buprestidae</span><span class="taxo-pill">Cerambycidae</span><span class="taxo-pill">Scolytidae</span><span class="taxo-pill">Elateridae</span><span class="taxo-pill">Scarabaeidae</span><span class="taxo-pill">Nitidulidae</span></div>
+  </div>
+  <div class="filter-bar" role="search">
+    <input type="search" id="spSearch" placeholder="Filtrer par nom, famille, plante hôte..." aria-label="Filtrer">
+    <select id="famFilter" aria-label="Filtrer par famille">
+      <option value="">Toutes les familles</option>
+      <option value="curculionidae">Curculionidae</option>
+<option value="chrysomelidae">Chrysomelidae</option>
+<option value="buprestidae">Buprestidae</option>
+<option value="cerambycidae">Cerambycidae</option>
+<option value="scolytidae">Scolytidae</option>
+<option value="elateridae">Elateridae</option>
+<option value="scarabaeidae">Scarabaeidae</option>
+<option value="nitidulidae">Nitidulidae</option>
+<option value="meloidae">Meloidae</option>
+    </select>
+    <span class="filter-count" id="filterCount"></span>
+  </div>
+  
+  <div class="model-block">
+    <h2>Morphologie générale — Modèle 3D interactif</h2>
+    <div class="model-viewer-wrap">
+      <model-viewer src="coleoptere.glb" alt="Modèle 3D Coléoptères"
+          auto-rotate camera-controls shadow-intensity="1"
+          camera-orbit="45deg 75deg 2.5m" style="width:100%;height:100%" loading="lazy">
+      </model-viewer>
+    </div>
+    <p class="model-caption">&#x1F5B1;&#xFE0F; Glisser pour pivoter · Scroll pour zoomer</p>
+    <div class="model-note">
+      <strong>Coleoptera</strong> (Linné, 1758) — L'ordre le plus riche du règne animal (~400 000 espèces). Caractérisé par ses élytres rigides protégeant les ailes membraneuses. Métamorphose holométabole.
+      <br><small>Source : <a href="https://www.catalogueoflife.org" target="_blank" rel="noopener">Catalogue of Life 2024</a></small>
+    </div>
+  </div>
+  <main id="species-container" aria-label="Liste des coléoptères"></main>
+  <div class="no-results-msg" id="noResults">
+    <p>Aucune espèce ne correspond à votre filtre.</p>
+    <button class="reset-btn" id="resetBtn">Réinitialiser</button>
+  </div>
+  <aside class="page-refs">
+    <h3>&#x1F4DA; Sources – Coléoptères</h3>
+    <ul><li><strong>Alonso-Zarazaga, M.A. et al.</strong> (2017). <em>Cooperative Catalogue of Palaearctic Coleoptera Curculionoidea</em>. Monogr. SEA, 8</li>
+<li><strong>EPPO</strong> (2024). <em>Pest datasheets – Coleoptera</em>. <a href="https://gd.eppo.int" target="_blank" rel="noopener">https://gd.eppo.int</a></li>
+<li><strong>Bonnemaison, L.</strong> (1962). <em>Les ennemis animaux des plantes cultivées</em>. SEP, Paris</li></ul>
+  </aside>
+</div>
+<div id="speciesModal" class="species-modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" hidden>
+  <div class="modal-overlay" id="modalOverlay"></div>
+  <div class="modal-panel">
+    <button class="modal-close" id="modalClose" aria-label="Fermer">&#x2715;</button>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>
+<div id="spTooltip" class="sp-tooltip" role="tooltip"></div>
+<button id="backToTop" aria-label="Haut de page">&#x25B2;</button>
+<footer role="contentinfo" style="background:rgba(4,9,5,.98);border-top:1px solid var(--border);padding:2rem;text-align:center">
+  <p style="font-size:.8rem;color:rgba(136,170,144,.45)">&copy; 2025 ENTOMASTER — <a href="../index.html" style="color:var(--gold)">Accueil</a></p>
+</footer>
+  <script src="species_data.js"></script>
+<script src="../shared.js"></script>
+<script src="../order_script.js"></script>
+</body></html>

@@ -1,143 +1,120 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ordre: Hémiptères - Classification et Espèces</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hémiptères – Espèces Nuisibles | ENTOMASTER</title>
+    <meta name="description" content="22 espèces de hémiptères nuisibles aux cultures.">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+    <script src="../search_index.js"></script>
 </head>
 <body>
-    <div id="particles"></div>
-    
-    <header class="header">
-        <div class="container">
-            <h1 class="main-title">Ordre: Hémiptères</h1>
-            <p class="subtitle">Classification scientifique et caractéristiques morphologiques</p>
-        </div>
-    </header>
-
-    <main class="main-content">
-        <div class="container">
-
-
-            <!-- Section sous-ordres -->
-            <section class="suborders-section">
-                <h2 class="section-title">Sous-ordres des Hémiptères</h2>
-                <div class="suborders-grid">
-                    <!-- Hétéroptères -->
-                    <div class="suborder-card" onclick="navigateToSuborder('heteroptera')">
-                        <div class="card-header">
-                            <h3 class="card-title">Sous-ordre: Hétéroptères</h3>
-                            <div class="card-subtitle">Punaises</div>
-                        </div>
-                        <div class="card-content">
-                            <div class="characteristics">
-                                <h4>Caractères généraux:</h4>
-                                <ul>
-                                    <li>30.000 espèces (plus de 60 familles)</li>
-                                    <li>Taille variable (1 mm à plus de 100 mm)</li>
-                                    <li>Développement hétérométabole-paurométabole</li>
-                                    <li>Tête presque toujours libre, généralement prognathe</li>
-                                    <li>Ailes antérieures partiellement coriaces (hémélytres)</li>
-                                </ul>
-                            </div>
-                            <div class="families-count">
-                                <span class="count">3 familles</span>
-                                <span class="species-count">10 espèces</span>
-                            </div>
-                        </div>
-                        <div class="card-footer">
-                            <span class="explore-btn">Explorer les espèces →</span>
-                        </div>
-                    </div>
-
-                    <!-- Auchenorrhyncha -->
-                    <div class="suborder-card" onclick="navigateToSuborder('auchenorrhyncha')">
-                        <div class="card-header">
-                            <h3 class="card-title">Sous-ordre: Auchenorrhyncha</h3>
-                            <div class="card-subtitle">Cicadelles et apparentés</div>
-                        </div>
-                        <div class="card-content">
-                            <div class="characteristics">
-                                <h4>Caractères généraux:</h4>
-                                <ul>
-                                    <li>Insectes ptérygotes</li>
-                                    <li>Appareil buccal piqueur-suceur</li>
-                                    <li>4 ailes membraneuses disposées en toit</li>
-                                    <li>Antennes courtes (1 à 3 articles)</li>
-                                    <li>Tarses de 3 articles</li>
-                                </ul>
-                            </div>
-                            <div class="families-count">
-                                <span class="count">2 familles</span>
-                                <span class="species-count">3 espèces</span>
-                            </div>
-                        </div>
-                        <div class="card-footer">
-                            <span class="explore-btn">Explorer les espèces →</span>
-                        </div>
-                    </div>
-
-                    <!-- Sternorrhyncha -->
-                    <div class="suborder-card" onclick="navigateToSuborder('sternorrhyncha')">
-                        <div class="card-header">
-                            <h3 class="card-title">Sous-ordre: Sternorrhyncha</h3>
-                            <div class="card-subtitle">Pucerons, cochenilles et aleurodes</div>
-                        </div>
-                        <div class="card-content">
-                            <div class="characteristics">
-                                <h4>Caractères généraux:</h4>
-                                <ul>
-                                    <li>Appareil buccal piqueur-suceur</li>
-                                    <li>Rostre inséré en avant des pattes antérieures</li>
-                                    <li>Antennes filiformes</li>
-                                    <li>Dimorphisme sexuel souvent marqué</li>
-                                    <li>Reproduction souvent par parthénogenèse</li>
-                                </ul>
-                            </div>
-                            <div class="families-count">
-                                <span class="count">6 familles</span>
-                                <span class="species-count">12 espèces</span>
-                            </div>
-                        </div>
-                        <div class="card-footer">
-                            <span class="explore-btn">Explorer les espèces →</span>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Section informations générales -->
-            <section class="info-section">
-                <h2 class="section-title">Informations générales</h2>
-                <div class="info-grid">
-                    <div class="info-card">
-                        <h3>Classification</h3>
-                        <p>L'ordre des Hémiptères comprend plus de 80 000 espèces décrites, réparties en plusieurs sous-ordres. Ces insectes sont caractérisés par leur appareil buccal piqueur-suceur.</p>
-                    </div>
-                    <div class="info-card">
-                        <h3>Importance économique</h3>
-                        <p>De nombreuses espèces d'hémiptères sont des ravageurs importants des cultures agricoles, causant des dégâts directs par leur alimentation et indirects par la transmission de virus.</p>
-                    </div>
-                    <div class="info-card">
-                        <h3>Écologie</h3>
-                        <p>Les hémiptères occupent une grande variété d'habitats et présentent des modes de vie très diversifiés, depuis les espèces aquatiques jusqu'aux parasites spécialisés.</p>
-                    </div>
-                </div>
-            </section>
-        </div>
-    </main>
-
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2024 Classification des Hémiptères - Guide scientifique</p>
-        </div>
-    </footer>
-
-    <script src="script.js"></script>
-</body>
-</html>
-
+<header>
+  <nav class="navbar" role="navigation" aria-label="Navigation principale">
+    <div class="nav-brand">
+      <a href="../index.html" class="nav-brand-link">
+        <span class="brand-name">ENTOMASTER</span>
+        <span class="brand-sub">Entomologie Agricole</span>
+      </a>
+    </div>
+    <div class="nav-search" role="search">
+      <div class="search-wrapper">
+        <svg class="search-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="9" cy="9" r="6"/><path d="m15 15 3 3"/>
+        </svg>
+        <input type="search" id="globalSearch" placeholder="Rechercher parmi 115 espèces..." autocomplete="off">
+      </div>
+      <div id="searchDropdown" class="search-dropdown" role="listbox" aria-live="polite"></div>
+    </div>
+    <ul class="nav-menu" id="navMenu" role="menubar">
+      <li><a href="../index.html" >Accueil</a></li>
+      <li class="has-dropdown">
+        <a href="#">Par Ordre &#x25BE;</a>
+        <ul class="dropdown-menu"><li><a href="../coleopteres/index.html">&#x1FAB2; Coléoptères</a></li>
+<li><a href="../lepidopteres/index.html">&#x1F98B; Lépidoptères</a></li>
+<li><a href="../dipteres/index.html">&#x1FAB0; Diptères</a></li>
+<li><a href="../hemipteres/index.html"  aria-current=page>&#x1F41B; Hémiptères</a></li>
+<li><a href="../thysanopteres/index.html">&#x1F52C; Thysanoptères</a></li>
+<li><a href="../hymenopteres/index.html">&#x1F41D; Hyménoptères</a></li>
+<li><a href="../orthopteres/index.html">&#x1F997; Orthoptères</a></li></ul>
+      </li>
+      <li><a href="../classification_par_culture.html" >Par Culture</a></li>
+      <li><a href="../index.html#references">Références</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+</header>
+<nav aria-label="Fil d'Ariane" class="breadcrumb-nav">
+  <ol class="breadcrumb">
+    <li><a href="../index.html">Accueil</a></li>
+    <li aria-current="page">Hémiptères</li>
+  </ol>
+</nav>
+<div class="page-wrap">
+  <div class="page-header">
+    <p class="page-order-label">Ordre : <strong>Hemiptera</strong> (Linné, 1758)</p>
+    <h1 class="page-title">&#x1F41B; Hémiptères</h1>
+    <p class="page-subtitle">22 espèces nuisibles aux cultures — Classification par famille</p>
+    <div class="taxo-pills"><span class="taxo-pill">Pentatomidae</span><span class="taxo-pill">Scutelliridae</span><span class="taxo-pill">Miridae</span><span class="taxo-pill">Aphididae</span><span class="taxo-pill">Aleyrodidae</span><span class="taxo-pill">Diaspididae</span><span class="taxo-pill">Coccidae</span></div>
+  </div>
+  <div class="filter-bar" role="search">
+    <input type="search" id="spSearch" placeholder="Filtrer par nom, famille, plante hôte..." aria-label="Filtrer">
+    <select id="famFilter" aria-label="Filtrer par famille">
+      <option value="">Toutes les familles</option>
+      <option value="pentatomidae">Pentatomidae</option>
+<option value="scutelliridae">Scutelliridae</option>
+<option value="miridae">Miridae</option>
+<option value="aphididae">Aphididae</option>
+<option value="aleyrodidae">Aleyrodidae</option>
+<option value="diaspididae">Diaspididae</option>
+<option value="coccidae">Coccidae</option>
+    </select>
+    <span class="filter-count" id="filterCount"></span>
+  </div>
+  
+  <div class="model-block">
+    <h2>Morphologie générale — Modèle 3D interactif</h2>
+    <div class="model-viewer-wrap">
+      <model-viewer src="hemiptere.glb" alt="Modèle 3D Hémiptères"
+          auto-rotate camera-controls shadow-intensity="1"
+          camera-orbit="45deg 75deg 2.5m" style="width:100%;height:100%" loading="lazy">
+      </model-viewer>
+    </div>
+    <p class="model-caption">&#x1F5B1;&#xFE0F; Glisser pour pivoter · Scroll pour zoomer</p>
+    <div class="model-note">
+      <strong>Hemiptera</strong> (Linné, 1758) — Pucerons, aleurodes, cochenilles et punaises. Pièces buccales piqueur-suceuses. Dégâts par ponction de sève et transmission de virus.
+      <br><small>Source : <a href="https://www.catalogueoflife.org" target="_blank" rel="noopener">Catalogue of Life 2024</a></small>
+    </div>
+  </div>
+  <main id="species-container" aria-label="Liste des hémiptères"></main>
+  <div class="no-results-msg" id="noResults">
+    <p>Aucune espèce ne correspond à votre filtre.</p>
+    <button class="reset-btn" id="resetBtn">Réinitialiser</button>
+  </div>
+  <aside class="page-refs">
+    <h3>&#x1F4DA; Sources – Hémiptères</h3>
+    <ul><li><strong>Schuh, R.T. & Slater, J.A.</strong> (1995). <em>True Bugs of the World</em>. Cornell Univ. Press</li>
+<li><strong>Blackman, R.L. & Eastop, V.F.</strong> (2000). <em>Aphids on the World Crops</em>. Wiley</li>
+<li><strong>EPPO</strong> (2024). <em>Pest datasheets – Hemiptera</em>. <a href="https://gd.eppo.int" target="_blank" rel="noopener">https://gd.eppo.int</a></li></ul>
+  </aside>
+</div>
+<div id="speciesModal" class="species-modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" hidden>
+  <div class="modal-overlay" id="modalOverlay"></div>
+  <div class="modal-panel">
+    <button class="modal-close" id="modalClose" aria-label="Fermer">&#x2715;</button>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>
+<div id="spTooltip" class="sp-tooltip" role="tooltip"></div>
+<button id="backToTop" aria-label="Haut de page">&#x25B2;</button>
+<footer role="contentinfo" style="background:rgba(4,9,5,.98);border-top:1px solid var(--border);padding:2rem;text-align:center">
+  <p style="font-size:.8rem;color:rgba(136,170,144,.45)">&copy; 2025 ENTOMASTER — <a href="../index.html" style="color:var(--gold)">Accueil</a></p>
+</footer>
+  <script src="species_data.js"></script>
+<script src="../shared.js"></script>
+<script src="../order_script.js"></script>
+</body></html>
